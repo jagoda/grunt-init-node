@@ -38,7 +38,7 @@ exports.template = function (grunt, init, done) {
             grunt.util.spawn(
                 {
                     args : [
-                        "install", "--save-dev", "async", "grunt-cli",
+                        "install", "--save-dev", "async", "chai", "grunt-cli",
                         "grunt-contrib-jshint", "istanbul", "jshint", "mocha"
                     ],
                     cmd  : "npm",
