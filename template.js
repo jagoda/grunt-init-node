@@ -1,3 +1,5 @@
+var fs = require("fs");
+
 exports.description = "Creates a basic node project with test infrastructure.";
 exports.notes = "This template creates an initial Gruntfile and package.json.";
 exports.warnOn = [ "Gruntfile.js", "package.json" ];
@@ -21,6 +23,9 @@ exports.template = function (grunt, init, done) {
             
             init.copyAndProcess(files, properties);
             init.writePackageJSON("package.json", properties);
+            
+            fs.mkdirSync("lib");
+            fs.mkdirSync("test");
             
             grunt.util.spawn(
                 {
