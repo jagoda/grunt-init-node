@@ -6,6 +6,14 @@ exports.warnOn = [ "Gruntfile.js", "package.json" ];
 
 exports.template = function (grunt, init, done) {
     
+    function createDirectory (path) {
+        try {
+            fs.mkdirSync(path);
+        } catch (error) {
+            grunt.fail.warn(error);
+        }
+    }
+    
     init.process(
         {},
         [
@@ -24,8 +32,8 @@ exports.template = function (grunt, init, done) {
             init.copyAndProcess(files, properties);
             init.writePackageJSON("package.json", properties);
             
-            fs.mkdirSync("lib");
-            fs.mkdirSync("test");
+            createDirectory("lib");
+            createDirectory("test");
             
             grunt.util.spawn(
                 {
