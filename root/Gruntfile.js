@@ -41,6 +41,9 @@ module.exports = function (grunt) {
                     expr : true,
                     
                     globals : {
+                        after      : false,
+                        before     : false,
+                        afterEach  : false,
                         beforeEach : false,
                         describe   : false,
                         it         : false
