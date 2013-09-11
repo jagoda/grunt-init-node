@@ -125,8 +125,8 @@ module.exports = function (grunt) {
         grunt.util.spawn(
             {
                 args : [
-                    "cover", "_mocha", "--recursive", "--reporter", "spec",
-                    path.join(__dirname, "test")
+                    "cover", "_mocha", "--", "--recursive", "--reporter",
+                    "spec", path.join(__dirname, "test")
                 ],
                 cmd  : "istanbul",
                 opts : { stdio: "inherit" }
