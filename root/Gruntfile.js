@@ -119,8 +119,10 @@ module.exports = function (grunt) {
     grunt.registerTask("lint", "Check for common code problems.", [ "jshint" ]);
     
     grunt.registerTask("test", "Run the test suite.", function () {
-        var done = this.async();
+        var done        = this.async(),
+            environment = Object.create(process.env);
         
+        environment.NODE_ENV = "test";
         grunt.log.writeln("Invoking the mocha test suite...");
         grunt.util.spawn(
             {
@@ -129,7 +131,10 @@ module.exports = function (grunt) {
                     "spec", path.join(__dirname, "test")
                 ],
                 cmd  : "istanbul",
-                opts : { stdio: "inherit" }
+                opts : {
+                    env   : environment,
+                    stdio : "inherit"
+                }
             },
             function (error) {
                 if (error) {
