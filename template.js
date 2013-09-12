@@ -29,6 +29,7 @@ exports.template = function (grunt, init, done) {
         function (error, properties) {
             var files = init.filesToCopy(properties);
             
+            init.addLicenseFiles(files, properties.licenses);
             init.copyAndProcess(files, properties);
             init.writePackageJSON("package.json", properties);
             
