@@ -67,52 +67,30 @@ module.exports = function (grunt) {
         function () {
             var done = this.async();
             
-            var tasks = [
-                    function (next) {
-                        grunt.log.writeln("Generating coverage report...");
-                        grunt.util.spawn(
-                            {
-                                args : [ "report", "html" ],
-                                cmd  : "istanbul",
-                                opts : { stdio: "inherit" }
-                            },
-                            next
-                        );
-                    },
-                    function (next) {
-                        grunt.log.writeln(
-                            "Checking test coverage thresholds..."
-                        );
-                        grunt.util.spawn(
-                            {
-                                args : [
-                                    "check-coverage", "--statements", "100",
-                                    "--functions", "100", "--branches", "100",
-                                    "--lines", "100"
-                                ],
-                                cmd  : "istanbul",
-                                opts : { stdio: "inherit" }
-                            },
-                            next
-                        );
+            grunt.log.writeln(
+                "Checking test coverage thresholds..."
+            );
+            grunt.util.spawn(
+                {
+                    args : [
+                        "check-coverage", "--statements", "100",
+                        "--functions", "100", "--branches", "100",
+                        "--lines", "100"
+                    ],
+                    cmd  : "istanbul",
+                    opts : { stdio: "inherit" }
+                },
+                function (error) {
+                    if (error) {
+                        grunt.log.error("Some code is not covered.");
+                        return grunt.fail.fatal(error);
                     }
-                ];
-                
-            (function next (error) {
-                var task = tasks.shift();
-                
-                if (!error && task) {
-                    return task(next);
+                    else {
+                        grunt.log.ok("All code has test coverage.");
+                        return done();
+                    }
                 }
-                else if (error) {
-                    grunt.log.error("Some code is not covered.");
-                    return grunt.fail.fatal(error);
-                }
-                else {
-                    grunt.log.ok("All code has test coverage.");
-                    return done();
-                }
-            })();
+            );
         }
     );
     
