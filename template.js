@@ -39,8 +39,9 @@ exports.template = function (grunt, init, done) {
             grunt.util.spawn(
                 {
                     args : [
-                        "install", "--save-dev", "async", "chai", "grunt-cli",
-                        "grunt-contrib-jshint", "istanbul", "jshint", "mocha"
+                        "install", "--save-dev", "chai", "grunt-cli",
+                        "grunt-contrib-jshint", "grunt-jscs-checker",
+                        "istanbul", "jscs", "jshint", "mocha", "q"
                     ],
                     cmd  : "npm",
                     opts : { stdio: "inherit" }
