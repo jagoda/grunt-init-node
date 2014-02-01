@@ -43,7 +43,7 @@ exports.template = function (grunt, init, done) {
 					args : [
 						"install", "--save-dev", "chai", "grunt-cli",
 						"grunt-contrib-jshint", "grunt-jscs-checker",
-						"istanbul", "jscs", "jshint", "mocha"
+						"istanbul", "mocha"
 					],
 					cmd  : "npm",
 					opts : { stdio : "inherit" }
