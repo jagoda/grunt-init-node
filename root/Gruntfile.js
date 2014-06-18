@@ -48,20 +48,6 @@ module.exports = function (grunt) {
 					">=", "<", "<="
 				],
 
-				disallowLeftStickedOperators : [
-					"?", "+", "-", "/", "*", "=", "==", "===", "!=", "!==", ">",
-					">=", "<", "<="
-				],
-
-				requireRightStickedOperators  : [ "!" ],
-
-				disallowRightStickedOperators : [
-					"?", "+", "/", "*", ":", "=", "==", "===", "!=", "!==", ">",
-					">=", "<", "<="
-				],
-
-				requireLeftStickedOperators : [ "," ],
-
 				disallowSpaceAfterPrefixUnaryOperators : [
 					"++", "--", "+", "-", "~", "!"
 				],
@@ -69,11 +55,15 @@ module.exports = function (grunt) {
 				disallowSpaceBeforePostfixUnaryOperators : [ "++", "--" ],
 
 				requireSpaceBeforeBinaryOperators : [
-					"+", "-", "/", "*", "=", "==", "===", "!=", "!=="
+					"?", "+", "-", "/", "*", "=", "==", "===", "!=", "!==", ">",
+					">=", "<", "<="
 				],
 
+				disallowSpaceBeforeBinaryOperators : [ "," ],
+
 				requireSpaceAfterBinaryOperators : [
-					"+", "-", "/", "*", "=", "==", "===", "!=", "!=="
+					"?", "+", "/", "*", ":", "=", "==", "===", "!=", "!==", ">",
+					">=", "<", "<="
 				],
 
 				disallowImplicitTypeConversion : [
